@@ -1,5 +1,6 @@
 import type { Product } from "@/lib/api";
 import { bnNum, bnPct, unitShortBn } from "@/lib/bn";
+import { ProductIcon } from "./ProductIcon";
 
 export default function Ticker({ products }: { products: Product[] }) {
   const renderItems = (hidden: boolean) => (
@@ -10,7 +11,9 @@ export default function Ticker({ products }: { products: Product[] }) {
           aria-hidden={hidden || undefined}
           className="flex shrink-0 items-center gap-2 border-r border-gray-100 px-5 text-sm"
         >
-          <span className="text-base">{p.image}</span>
+          <span className="inline-flex text-base">
+            <ProductIcon product={p} />
+          </span>
           <span className="font-medium">{p.nameBn}</span>
           <span className="text-gray-600">
             {bnNum(p.today)} টাকা/{unitShortBn(p.unit)}

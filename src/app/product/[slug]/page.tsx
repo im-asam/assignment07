@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth";
 import { getProducts } from "@/lib/api";
 import { bnNum, toBn, unitBn } from "@/lib/bn";
 import ChangeBadge from "@/components/ChangeBadge";
+import { ProductIcon } from "@/components/ProductIcon";
 import RequireAuth from "@/components/RequireAuth";
 
 // Blocking route: session check + live API data at request time.
@@ -80,7 +81,7 @@ export default async function ProductPage({
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-5">
             <span className="flex h-20 w-20 items-center justify-center rounded-2xl bg-[#f1f5ef] text-5xl">
-              {product.image}
+              <ProductIcon product={product} />
             </span>
             <div>
               <h1 className="text-2xl font-bold sm:text-3xl">{product.nameBn}</h1>

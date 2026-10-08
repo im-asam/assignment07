@@ -21,6 +21,7 @@ export function bnPct(pct: number): string {
 const UNIT_BN: Record<string, string> = {
   kg: "প্রতি কেজি",
   liter: "প্রতি লিটার",
+  litre: "প্রতি লিটার",
   dozen: "প্রতি ডজন",
   piece: "প্রতি পিস",
 };
@@ -28,6 +29,7 @@ const UNIT_BN: Record<string, string> = {
 const UNIT_SHORT_BN: Record<string, string> = {
   kg: "কেজি",
   liter: "লিটার",
+  litre: "লিটার",
   dozen: "ডজন",
   piece: "পিস",
 };

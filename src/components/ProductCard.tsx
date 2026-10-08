@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Product } from "@/lib/api";
 import { bnNum, unitBn } from "@/lib/bn";
 import ChangeBadge from "./ChangeBadge";
+import { ProductIcon } from "./ProductIcon";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
@@ -11,7 +12,7 @@ export default function ProductCard({ product }: { product: Product }) {
     >
       <div className="flex items-center gap-3">
         <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#f1f5ef] text-2xl">
-          {product.image}
+          <ProductIcon product={product} />
         </span>
         <div className="min-w-0">
           <h3 className="truncate font-semibold leading-snug">{product.nameBn}</h3>
