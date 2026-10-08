@@ -1,23 +1,20 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { auth } from "@/lib/auth";
 
 /**
- * Authoritative auth gate for protected routes.
- * Validates the session server-side through better-auth itself (it reads its
- * own cookies, whatever their names/prefixes are). Cookie-name sniffing was
- * unreliable across HTTP/HTTPS deployments and caused redirect loops.
- * No valid session -> redirect to /signin before rendering.
+ * Optimistic auth gate for protected routes.
+ * Only checks for the PRESENCE of a session cookie (no DB access — the
+ * proxy runs in a separate isolate with its own ephemeral /tmp, so it
+ * cannot see the SQLite database). better-auth names the cookie
+ * `better-auth.session_token`, with a `__Secure-` prefix over HTTPS.
+ * If neither is present the user is definitely logged out -> redirect to
+ * /signin. The page itself re-validates the session authoritatively and
+ * handles stale/invalid sessions via RequireAuth.
  */
-export async function proxy(request: NextRequest) {
-  let user = null;
-  try {
-    const session = await auth.api.getSession({ headers: request.headers });
-    user = session?.user ?? null;
-  } catch {
-    user = null;
-  }
-  if (!user) {
+export function proxy(request: NextRequest) {
+  const plain = request.cookies.get("better-auth.session_token")?.value;
+  const secure = request.cookies.get("__Secure-better-auth.session_token")?.value;
+  if (!plain && !secure) {
     const url = request.nextUrl.clone();
     const next = `${url.pathname}${url.search}`;
     url.pathname = "/signin";

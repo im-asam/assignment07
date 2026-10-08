@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import toast from "react-hot-toast";
 
 /**
  * Fallback for the rare case where the session cookie exists but the
@@ -13,7 +12,8 @@ export default function RequireAuth({ next }: { next: string }) {
   const router = useRouter();
 
   useEffect(() => {
-    toast("বিস্তারিত দাম দেখতে সাইন ইন করুন", { icon: "🔒" });
+    // No toast here — the /signin page shows the "sign in required" toast
+    // itself via ?auth=1. Toasting in both places caused duplicates.
     router.replace(`/signin?next=${encodeURIComponent(next)}&auth=1`);
   }, [router, next]);
 
