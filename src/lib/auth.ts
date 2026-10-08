@@ -26,6 +26,15 @@ export const auth = betterAuth({
   database: kyselyAdapter(db),
   emailAndPassword: { enabled: true },
   socialProviders,
+  session: {
+    // Signed JWT session data in a cookie: session validation becomes
+    // stateless and works from ANY serverless isolate (proxy, pages, API),
+    // without needing the ephemeral /tmp SQLite database.
+    cookieCache: {
+      enabled: true,
+      maxAge: 60 * 60 * 24 * 7, // 7 days — matches session lifetime
+    },
+  },
 });
 
 /** Which social providers are actually configured (for the auth UI). */
