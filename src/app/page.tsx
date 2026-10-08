@@ -1,9 +1,13 @@
 import { Suspense } from "react";
+import { connection } from "next/server";
 import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
 import { CardGridSkeleton } from "@/components/Skeletons";
 import { getProducts } from "@/lib/api";
 import { toBn } from "@/lib/bn";
+
+// This route intentionally blocks on request-time data (today's date + live prices).
+export const instant = false;
 
 async function HomeSections() {
   const products = await getProducts().catch(() => []);
@@ -56,7 +60,9 @@ async function HomeSections() {
   );
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  // The page shows "today's" Bangla date, so render at request time.
+  await connection();
   return (
     <>
       <Hero />

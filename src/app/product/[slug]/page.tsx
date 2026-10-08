@@ -1,10 +1,29 @@
 import { headers } from "next/headers";
-import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import { auth } from "@/lib/auth";
 import { getProducts } from "@/lib/api";
 import { bnNum, toBn, unitBn } from "@/lib/bn";
 import ChangeBadge from "@/components/ChangeBadge";
+import RequireAuth from "@/components/RequireAuth";
+
+// Blocking route: session check + live API data at request time.
+export const instant = false;
+
+function InvalidProduct() {
+  return (
+    <div className="mx-auto max-w-xl py-24 text-center">
+      <p className="text-7xl font-bold text-gray-300">৪০৪</p>
+      <h1 className="mt-6 text-2xl font-bold">এই পণ্য খুঁজে পাওয়া যায়নি</h1>
+      <p className="mt-2 text-gray-600">দুঃখিত, আপনি যে পণ্যটি খুঁজছেন সেটি নেই।</p>
+      <Link
+        href="/"
+        className="mt-8 inline-block rounded-xl bg-[#15803d] px-6 py-3 font-semibold text-white transition hover:bg-[#166534]"
+      >
+        হোম পেজে ফিরে যান
+      </Link>
+    </div>
+  );
+}
 
 export default async function ProductPage({
   params,
@@ -14,13 +33,15 @@ export default async function ProductPage({
   const { slug } = await params;
 
   const session = await auth.api.getSession({ headers: await headers() });
+  // The proxy already redirects visitors with no session cookie; this covers
+  // the edge case of a stale/invalid session (client-side redirect + toast).
   if (!session?.user) {
-    redirect(`/signin?next=${encodeURIComponent(`/product/${slug}`)}&auth=1`);
+    return <RequireAuth next={`/product/${slug}`} />;
   }
 
   const products = await getProducts().catch(() => []);
   const product = products.find((p) => p.slug === slug);
-  if (!product) notFound();
+  if (!product) return <InvalidProduct />;
 
   const mins = product.markets.map((m) => m.min);
   const maxs = product.markets.map((m) => m.max);

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -12,13 +13,22 @@ export const metadata: Metadata = {
     "চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার প্রতিদিনের দাম — বাজারভিত্তিক বিস্তারিত এক জায়গায়।",
 };
 
-export default async function RootLayout({ children }: LayoutProps<"/">) {
-  // Never let an API outage break the shell of the app.
-  const [categories, products] = await Promise.all([
-    getCategories().catch(() => []),
-    getProducts().catch(() => []),
-  ]);
+// All routes block on request-time data (live prices, sessions) —
+// opt out of instant-navigation validation for the whole app.
+export const instant = false;
 
+async function NavSection() {
+  // Never let an API outage break the shell of the app.
+  const categories = await getCategories().catch(() => []);
+  return <Navbar categories={categories} />;
+}
+
+async function TickerSection() {
+  const products = await getProducts().catch(() => []);
+  return <Ticker products={products} />;
+}
+
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="bn">
       <body className="antialiased">
@@ -31,8 +41,12 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
             }}
           />
         </div>
-        <Navbar categories={categories} />
-        <Ticker products={products} />
+        <Suspense fallback={<div className="h-28 bg-white/80" />}>
+          <NavSection />
+        </Suspense>
+        <Suspense fallback={null}>
+          <TickerSection />
+        </Suspense>
         <main className="mx-auto max-w-6xl px-4 pt-6">{children}</main>
         <Footer />
       </body>

@@ -1,5 +1,5 @@
 import { betterAuth } from "better-auth";
-import { kyselyAdapter } from "better-auth/adapters/kysely";
+import { kyselyAdapter } from "@better-auth/kysely-adapter";
 import { db } from "./db";
 
 /**
@@ -23,7 +23,7 @@ if (process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET) {
 }
 
 export const auth = betterAuth({
-  database: kyselyAdapter(db, { provider: "sqlite" }),
+  database: kyselyAdapter(db),
   emailAndPassword: { enabled: true },
   socialProviders,
 });
