@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
+import { GitHubIcon, GoogleIcon } from "@/components/SocialIcons";
 
 export default function SignupForm({
   providers,
@@ -122,18 +123,18 @@ export default function SignupForm({
                 <button
                   type="button"
                   onClick={() => social("google")}
-                  className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-gray-300 px-3 py-3 text-sm font-medium transition hover:bg-gray-50"
+                  className="flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-gray-300 px-3 py-3 text-sm font-medium transition hover:bg-gray-50"
                 >
-                  <span className="font-bold text-[#4285F4]">G</span> Google দিয়ে চালিয়ে যান
+                  <GoogleIcon /> Google দিয়ে চালিয়ে যান
                 </button>
               )}
               {providers.github && (
                 <button
                   type="button"
                   onClick={() => social("github")}
-                  className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-gray-300 px-3 py-3 text-sm font-medium transition hover:bg-gray-50"
+                  className="flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-gray-300 px-3 py-3 text-sm font-medium transition hover:bg-gray-50"
                 >
-                  <span className="text-lg">🐙</span> GitHub দিয়ে চালিয়ে যান
+                  <GitHubIcon /> GitHub দিয়ে চালিয়ে যান
                 </button>
               )}
             </div>
