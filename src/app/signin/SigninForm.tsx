@@ -16,9 +16,15 @@ export default function SigninForm({
   providers: { google: boolean; github: boolean };
 }) {
   const router = useRouter();
+  const { data: session, isPending } = authClient.useSession();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // Already signed in? Don't show the form — go where they were headed.
+  useEffect(() => {
+    if (!isPending && session?.user) router.replace(next);
+  }, [isPending, session, router, next]);
 
   useEffect(() => {
     if (showAuthToast) toast("বিস্তারিত দাম দেখতে সাইন ইন করুন", { icon: "🔒" });

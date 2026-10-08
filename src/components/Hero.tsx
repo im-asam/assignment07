@@ -1,6 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
 import { bnDate } from "@/lib/bn";
-import BasketIllustration from "./BasketIllustration";
 
 export default function Hero() {
   return (
@@ -25,7 +25,14 @@ export default function Hero() {
           </a>
         </div>
         <div className="w-full max-w-xs shrink-0 md:max-w-sm">
-          <BasketIllustration />
+          <Image
+            src="/hero-basket.png"
+            alt="সবজি ও ফলের ঝুড়ি"
+            width={420}
+            height={350}
+            className="h-auto w-full"
+            priority
+          />
         </div>
       </div>
     </section>

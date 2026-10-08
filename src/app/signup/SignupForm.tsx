@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 
@@ -12,11 +12,17 @@ export default function SignupForm({
   providers: { google: boolean; github: boolean };
 }) {
   const router = useRouter();
+  const { data: session, isPending } = authClient.useSession();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // Already signed in? Don't show the form — go home.
+  useEffect(() => {
+    if (!isPending && session?.user) router.replace("/");
+  }, [isPending, session, router]);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
