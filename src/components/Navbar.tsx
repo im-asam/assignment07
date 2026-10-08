@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 import { bnDate } from "@/lib/bn";
+import { CategoryIcon } from "./CategoryIcon";
 import type { Category } from "@/lib/api";
 
 export default function Navbar({ categories }: { categories: Category[] }) {
@@ -117,7 +118,9 @@ export default function Navbar({ categories }: { categories: Category[] }) {
                       : "text-gray-700 hover:bg-gray-100"
                   }`}
                 >
-                  <span>{c.icon}</span>
+                  <span className="inline-flex items-center">
+                    <CategoryIcon category={c} />
+                  </span>
                   {c.nameBn}
                 </Link>
               );

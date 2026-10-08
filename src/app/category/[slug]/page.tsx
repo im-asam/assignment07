@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { getCategories, getProducts } from "@/lib/api";
 import { CardGridSkeleton } from "@/components/Skeletons";
+import { CategoryIcon } from "@/components/CategoryIcon";
 import CategoryClient from "./CategoryClient";
 
 // Blocking route: params + live API data at request time.
@@ -48,7 +49,7 @@ export default async function CategoryPage({
       <section className="rounded-3xl border border-gray-200/70 bg-white p-6 sm:p-8">
         <div className="flex items-center gap-4">
           <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#f1f5ef] text-3xl">
-            {category.icon}
+            <CategoryIcon category={category} />
           </span>
           <div>
             <h1 className="text-2xl font-bold sm:text-3xl">{category.nameBn}</h1>
