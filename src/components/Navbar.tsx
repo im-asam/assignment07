@@ -101,10 +101,10 @@ export default function Navbar({ categories }: { categories: Category[] }) {
         </div>
       </div>
 
-      {/* Row 2: category links — same centered container as the logo row */}
+      {/* Row 2: category links — left-aligned under the logo, like the original */}
       <nav className="border-t border-gray-100">
         <div className="mx-auto max-w-6xl overflow-x-auto px-4">
-          <div className="flex w-max min-w-full items-center justify-start gap-1 py-2 sm:justify-center">
+          <div className="flex w-max min-w-full items-center justify-start gap-1 py-2">
             {categories.map((c) => {
               const active = pathname === `/category/${c.slug}`;
               return (
