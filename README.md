@@ -11,7 +11,6 @@
 
 🌐 **Live:** https://bazar-dor-sam-e97c.vercel.app
 
-৭টি Figma ডিজাইন থেকে বানানো বাংলা-ফার্স্ট মার্কেট-প্রাইস অ্যাপ।
 
 ## ✨ Key Features
 
