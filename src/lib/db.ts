@@ -1,62 +1,32 @@
-import Database from "better-sqlite3";
-import { Kysely, SqliteDialect } from "kysely";
+import { MongoClient, type Db } from "mongodb";
 
 /**
- * SQLite via better-sqlite3. On serverless (e.g. Vercel) only /tmp is
- * writable, so set BETTER_AUTH_DATABASE_URL=/tmp/bazar-dor.db there.
- * Data on serverless is ephemeral — fine for this assignment demo.
+ * MongoDB connection for Better Auth.
+ *
+ * Set MONGODB_URI to your MongoDB Atlas (or any MongoDB) connection string,
+ * e.g. mongodb+srv://<user>:<password>@<cluster>.mongodb.net/bazar-dor
+ *
+ * The client connects lazily on first use, so importing this module is safe
+ * during `next build` even without the env var set. In production the env
+ * var must be present or auth operations will fail to connect.
  */
-const dbFile = process.env.BETTER_AUTH_DATABASE_URL ?? "./bazar-dor.db";
 
-const sqlite = new Database(dbFile);
+const uri =
+  process.env.MONGODB_URI ??
+  // Build-time placeholder: never actually connected to (no I/O happens
+  // until the first DB operation, by which point the real URI must be set).
+  "mongodb://localhost:27017/bazar-dor-build-placeholder";
 
-// Create Better Auth tables if they don't exist (matches the default
-// better-auth schema for the kysely sqlite adapter).
-sqlite.exec(`
-CREATE TABLE IF NOT EXISTS "user" (
-  "id" TEXT PRIMARY KEY,
-  "name" TEXT NOT NULL,
-  "email" TEXT NOT NULL UNIQUE,
-  "emailVerified" INTEGER NOT NULL DEFAULT 0,
-  "image" TEXT,
-  "createdAt" TEXT NOT NULL,
-  "updatedAt" TEXT NOT NULL
-);
-CREATE TABLE IF NOT EXISTS "session" (
-  "id" TEXT PRIMARY KEY,
-  "expiresAt" TEXT NOT NULL,
-  "token" TEXT NOT NULL UNIQUE,
-  "createdAt" TEXT NOT NULL,
-  "updatedAt" TEXT NOT NULL,
-  "ipAddress" TEXT,
-  "userAgent" TEXT,
-  "userId" TEXT NOT NULL REFERENCES "user"("id") ON DELETE CASCADE
-);
-CREATE TABLE IF NOT EXISTS "account" (
-  "id" TEXT PRIMARY KEY,
-  "accountId" TEXT NOT NULL,
-  "providerId" TEXT NOT NULL,
-  "userId" TEXT NOT NULL REFERENCES "user"("id") ON DELETE CASCADE,
-  "accessToken" TEXT,
-  "refreshToken" TEXT,
-  "idToken" TEXT,
-  "accessTokenExpiresAt" TEXT,
-  "refreshTokenExpiresAt" TEXT,
-  "scope" TEXT,
-  "password" TEXT,
-  "createdAt" TEXT NOT NULL,
-  "updatedAt" TEXT NOT NULL
-);
-CREATE TABLE IF NOT EXISTS "verification" (
-  "id" TEXT PRIMARY KEY,
-  "identifier" TEXT NOT NULL,
-  "value" TEXT NOT NULL,
-  "expiresAt" TEXT NOT NULL,
-  "createdAt" TEXT,
-  "updatedAt" TEXT
-);
-`);
+declare global {
+  // Reuse the client across HMR reloads in dev; on serverless each isolate
+  // keeps its own (the driver pools connections per isolate).
+  var _mongoClient: MongoClient | undefined;
+}
 
-export const db = new Kysely({
-  dialect: new SqliteDialect({ database: sqlite }),
-});
+const mongoClient =
+  global._mongoClient ?? (global._mongoClient = new MongoClient(uri));
+
+/** MongoDB database handle (database name comes from the URI). */
+export const db: Db = mongoClient.db();
+
+export { mongoClient };

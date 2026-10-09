@@ -6,8 +6,7 @@ import { auth } from "@/lib/auth";
  * Authoritative auth gate for protected routes.
  * better-auth is configured with session.cookieCache, so getSession
  * validates the signed session cookie WITHOUT touching the database —
- * this works from any serverless isolate (the /tmp SQLite database is
- * per-isolate and cannot be relied on here).
+ * this works from any serverless isolate.
  * No valid session -> redirect to /signin before rendering.
  */
 export async function proxy(request: NextRequest) {

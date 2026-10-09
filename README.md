@@ -40,9 +40,9 @@ npm run dev
 2. Environment variables সেট করুন:
    - `BETTER_AUTH_SECRET` — র‍্যান্ডম সিক্রেট
    - `BETTER_AUTH_URL` — প্রোডাকশন URL (যেমন `https://bazar-dor.vercel.app`)
-   - `BETTER_AUTH_DATABASE_URL=/tmp/bazar-dor.db` — serverless-এ শুধু `/tmp` writable
+   - `MONGODB_URI` — MongoDB Atlas connection string (যেমন `mongodb+srv://<user>:<password>@<cluster>.mongodb.net/bazar-dor`)
    - (ঐচ্ছিক) `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`, `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET`
-3. ⚠️ নোট: serverless SQLite ephemeral — রিডিপ্লয়ে ইউজার ডাটা মুছে যাবে (অ্যাসাইনমেন্ট ডেমোর জন্য ঠিক আছে)।
+3. ✅ নোট: Auth ডাটা এখন MongoDB-তে থাকে — রিডিপ্লয়েও ইউজার ডাটা মুছবে না।
 
 ## 📁 Routes
 

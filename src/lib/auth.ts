@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
-import { kyselyAdapter } from "@better-auth/kysely-adapter";
-import { db } from "./db";
+import { mongodbAdapter } from "@better-auth/mongo-adapter";
+import { db, mongoClient } from "./db";
 
 /**
  * Social providers are enabled only when their env vars are present,
@@ -23,13 +23,18 @@ if (process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET) {
 }
 
 export const auth = betterAuth({
-  database: kyselyAdapter(db),
+  database: mongodbAdapter(db, {
+    client: mongoClient,
+    // Works on any MongoDB topology, including standalone servers without
+    // replica-set transactions (e.g. some free/shared tiers).
+    transaction: false,
+  }),
   emailAndPassword: { enabled: true },
   socialProviders,
   session: {
     // Signed JWT session data in a cookie: session validation becomes
     // stateless and works from ANY serverless isolate (proxy, pages, API),
-    // without needing the ephemeral /tmp SQLite database.
+    // without a database round-trip on every request.
     cookieCache: {
       enabled: true,
       maxAge: 60 * 60 * 24 * 7, // 7 days — matches session lifetime
