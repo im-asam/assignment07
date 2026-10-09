@@ -11,7 +11,7 @@
 
 🌐 **Live:** https://bazar-dor-sam-e97c.vercel.app
 
-Programming Hero **Assignment 7 (B14-A7-Bazar-Dor)**-এর জন্য তৈরি — ৭টি Figma ডিজাইন থেকে বানানো বাংলা-ফার্স্ট মার্কেট-প্রাইস অ্যাপ।
+৭টি Figma ডিজাইন থেকে বানানো বাংলা-ফার্স্ট মার্কেট-প্রাইস অ্যাপ।
 
 ## ✨ Key Features
 
@@ -49,12 +49,6 @@ npm run dev
 | `MONGODB_URI` | ✅ | MongoDB Atlas connection string |
 | `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | ⭕ | না দিলে শুধু ইমেইল/পাসওয়ার্ড চালু থাকে |
 | `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` | ⭕ | না দিলে শুধু ইমেইল/পাসওয়ার্ড চালু থাকে |
-
-## 🌐 Deploy (Vercel)
-
-1. GitHub-এ পুশ করে Vercel-এ ইমপোর্ট করুন।
-2. **Settings → Environment Variables**-এ উপরের টেবিলের variable-গুলো সেট করুন (production)।
-3. Deploy করুন — Auth ডাটা MongoDB-তে থাকে, তাই রিডিপ্লয়েও ইউজার ডাটা মুছবে না।
 
 ## 📁 Routes
 
