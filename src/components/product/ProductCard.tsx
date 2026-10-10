@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Product } from "@/lib/api";
 import { bnNum, unitBn } from "@/lib/bn";
-import ChangeBadge from "./ChangeBadge";
+import ChangeBadge from "../ui/ChangeBadge";
 import { ProductIcon } from "./ProductIcon";
 
 export default function ProductCard({ product }: { product: Product }) {

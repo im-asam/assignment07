@@ -1,6 +1,6 @@
 import type { Product } from "@/lib/api";
 import { bnNum, bnPct, unitShortBn } from "@/lib/bn";
-import { ProductIcon } from "./ProductIcon";
+import { ProductIcon } from "../product/ProductIcon";
 
 export default function Ticker({ products }: { products: Product[] }) {
   const renderItems = (hidden: boolean) => (

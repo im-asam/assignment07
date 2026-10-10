@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { getCategories, getProducts } from "@/lib/api";
-import { CardGridSkeleton } from "@/components/Skeletons";
-import { CategoryIcon } from "@/components/CategoryIcon";
+import { CardGridSkeleton } from "@/components/ui/Skeletons";
+import { CategoryIcon } from "@/components/product/CategoryIcon";
 import CategoryClient from "./CategoryClient";
 
 // Blocking route: params + live API data at request time.

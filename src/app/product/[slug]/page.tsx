@@ -3,9 +3,9 @@ import Link from "next/link";
 import { auth } from "@/lib/auth";
 import { getProducts } from "@/lib/api";
 import { bnNum, toBn, unitBn } from "@/lib/bn";
-import ChangeBadge from "@/components/ChangeBadge";
-import { ProductIcon } from "@/components/ProductIcon";
-import RequireAuth from "@/components/RequireAuth";
+import ChangeBadge from "@/components/ui/ChangeBadge";
+import { ProductIcon } from "@/components/product/ProductIcon";
+import RequireAuth from "@/components/auth/RequireAuth";
 
 // Blocking route: session check + live API data at request time.
 export const instant = false;

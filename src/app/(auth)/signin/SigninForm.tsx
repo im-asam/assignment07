@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
-import { GitHubIcon, GoogleIcon } from "@/components/SocialIcons";
+import { GitHubIcon, GoogleIcon } from "@/components/ui/SocialIcons";
 
 export default function SigninForm({
   next,

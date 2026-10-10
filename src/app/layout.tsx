@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Ticker from "@/components/Ticker";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Ticker from "@/components/layout/Ticker";
+import Footer from "@/components/layout/Footer";
 import { getCategories, getProducts } from "@/lib/api";
 
 export const metadata: Metadata = {

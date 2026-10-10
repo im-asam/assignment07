@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import ProfileClient from "./ProfileClient";
-import RequireAuth from "@/components/RequireAuth";
+import RequireAuth from "@/components/auth/RequireAuth";
 
 // Blocking route: session check at request time.
 export const instant = false;

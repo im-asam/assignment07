@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 import { bnDate } from "@/lib/bn";
-import { CategoryIcon } from "./CategoryIcon";
+import { CategoryIcon } from "../product/CategoryIcon";
 import type { Category } from "@/lib/api";
 
 export default function Navbar({ categories }: { categories: Category[] }) {

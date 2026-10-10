@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 import { connection } from "next/server";
-import Hero from "@/components/Hero";
-import ProductCard from "@/components/ProductCard";
-import { CardGridSkeleton } from "@/components/Skeletons";
+import Hero from "@/components/home/Hero";
+import ProductCard from "@/components/product/ProductCard";
+import { CardGridSkeleton } from "@/components/ui/Skeletons";
 import { getProducts } from "@/lib/api";
 import { toBn } from "@/lib/bn";
 

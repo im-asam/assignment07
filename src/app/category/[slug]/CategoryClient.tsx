@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import ProductCard from "@/components/ProductCard";
+import ProductCard from "@/components/product/ProductCard";
 import { toBn } from "@/lib/bn";
 import type { Product } from "@/lib/api";
 
