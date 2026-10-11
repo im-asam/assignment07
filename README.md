@@ -109,4 +109,4 @@ npm run dev
 
 ## 👨‍💻 Author
 
-**Asam Uddin** — built as part of the Programming Hero Full Stack Web Development course (Assignment 7: Bazar Dor).
+**Asam Uddin**
