@@ -5,7 +5,7 @@
 > প্রতিদিনের বাজারদর এক নজরে — চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার
 > আজকের দাম, দামের পরিবর্তন (▲/▼), আর বাজারভিত্তিক সর্বনিম্ন–সর্বাধিক–গড় দাম, সব এক জায়গায়।
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-05893e?style=for-the-badge&logo=vercel&logoColor=white)](https://bazar-dor-sam-e97c.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-05893e?style=for-the-badge&logo=vercel&logoColor=white)](https://assignment07-bazardor.vercel.app/)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-1d271f?style=for-the-badge&logo=github&logoColor=white)](https://github.com/im-asam/assignment07)
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
@@ -20,7 +20,7 @@
 
 **বাজার দর (BazarDor)** is a Bangla-first daily market-price web app. Check today's prices of rice, lentils, oil, vegetables, fish, meat, eggs and spices at a glance — with price change indicators (▲/▼), top risers & fallers, category browsing with smart sorting, and market-wise minimum / maximum / average prices.
 
-🌐 **Live:** https://bazar-dor-sam-e97c.vercel.app
+🌐 **Live:** https://assignment07-bazardor.vercel.app
 
 ---
 
