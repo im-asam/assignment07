@@ -2,8 +2,8 @@
 
 # 🧺 বাজার দর | BazarDor
 
-> প্রতিদিনের বাজারদর এক নজরে — চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার
-> আজকের দাম, দামের পরিবর্তন (▲/▼), আর বাজারভিত্তিক সর্বনিম্ন–সর্বাধিক–গড় দাম, সব এক জায়গায়।
+> Daily market prices at a glance — rice, lentils, oil, vegetables, fish, meat, eggs & spices:
+> today's prices, price changes (▲/▼), and market-wise minimum–maximum–average prices, all in one place.
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-05893e?style=for-the-badge&logo=vercel&logoColor=white)](https://assignment07-bazardor.vercel.app/)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-1d271f?style=for-the-badge&logo=github&logoColor=white)](https://github.com/im-asam/assignment07)
@@ -18,7 +18,7 @@
 
 ## 📖 Short Description
 
-**বাজার দর (BazarDor)** is a Bangla-first daily market-price web app. Check today's prices of rice, lentils, oil, vegetables, fish, meat, eggs and spices at a glance — with price change indicators (▲/▼), top risers & fallers, category browsing with smart sorting, and market-wise minimum / maximum / average prices.
+**BazarDor (বাজার দর)** is a Bangla-first daily market-price web app. Check today's prices of rice, lentils, oil, vegetables, fish, meat, eggs and spices at a glance — with price change indicators (▲/▼), top risers & fallers, category browsing with smart sorting, and market-wise minimum / maximum / average prices.
 
 🌐 **Live:** https://assignment07-bazardor.vercel.app
 
@@ -26,38 +26,38 @@
 
 ## ✨ 5 Key Features
 
-1. **📢 লাইভ প্রাইস টিকার** — নেভবারের নিচে infinite scrolling marquee; প্রতিটি পণ্যের দাম ও ▲/▼ শতাংশ এক নজরে।
-2. **📈📉 দাম বাড়া / কমা সেকশন** — "আজ দাম বেড়েছে" (টপ ৬) ও "আজ দাম কমেছে" (টপ ৬) স্বয়ংক্রিয়ভাবে হিসাব করা।
-3. **🗂️ ক্যাটাগরি পেজ + স্মার্ট সর্ট** — ডিফল্ট / দাম: কম→বেশি / দাম: বেশি→কম সর্ট; বাংলা সংখ্যা numeric-ভাবে সঠিকভাবে সাজে।
-4. **🔒 প্রোটেক্টেড প্রোডাক্ট ডিটেইল** — শুধু লগইন করা ইউজার দেখতে পারে; দামের সারসংক্ষেপ (সর্বনিম্ন / সর্বাধিক / গড়) + বাজারভিত্তিক দামের টেবিল।
-5. **🔑 Better Auth অথেনটিকেশন** — ইমেইল/পাসওয়ার্ড + Google + GitHub সোশ্যাল লগইন; সেশন MongoDB Atlas-এ persist করে, তাই রিডিপ্লয়েও ইউজার ডাটা মুছে না।
+1. **📢 Live Price Ticker** — Infinite scrolling marquee under the navbar; every product's price with ▲/▼ change percentage at a glance.
+2. **📈📉 Price Risers / Fallers** — "Prices up today" (top 6) and "prices down today" (top 6), computed automatically.
+3. **🗂️ Category Pages + Smart Sorting** — Default / price low→high / price high→low sorting; Bangla numerals sort numerically, not as strings.
+4. **🔒 Protected Product Details** — Only signed-in users can view details; price summary (minimum / maximum / average) plus a market-wise price table.
+5. **🔑 Better Auth Authentication** — Email/password + Google + GitHub social login; sessions persist in MongoDB Atlas, so user data survives redeploys.
 
-> আরও আছে: প্রোফাইলে নাম আপডেট • সম্পূর্ণ বাংলা UI — বাংলা সংখ্যা (১২৩…), `bn-BD` তারিখ • টোস্ট নোটিফিকেশন • স্কেলিটন লোডার • কাস্টম SVG আইকন • সম্পূর্ণ রেসপন্সিভ ডিজাইন।
+> Also included: profile name update • full Bangla UI — Bangla numerals (১২৩…), `bn-BD` dates • toast notifications • skeleton loaders • custom SVG icons • fully responsive design.
 
 ---
 
 ## 🛠️ Technologies Used
 
-| Technology | ব্যবহার |
+| Technology | Purpose |
 |---|---|
-| **Next.js 16** (App Router) + **TypeScript** | ফ্রেমওয়ার্ক ও টাইপ-সেফটি |
-| **Tailwind CSS v4** | স্টাইলিং |
-| **Better Auth** | ইমেইল/পাসওয়ার্ড + Google/GitHub OAuth, stateless JWT session (`cookieCache`) |
-| **MongoDB Atlas** | Auth ডাটাবেজ (`mongodb` driver + `@better-auth/mongo-adapter`) |
-| **react-hot-toast** | টোস্ট নোটিফিকেশন |
+| **Next.js 16** (App Router) + **TypeScript** | Framework & type safety |
+| **Tailwind CSS v4** | Styling |
+| **Better Auth** | Email/password + Google/GitHub OAuth, stateless JWT session (`cookieCache`) |
+| **MongoDB Atlas** | Auth database (`mongodb` driver + `@better-auth/mongo-adapter`) |
+| **react-hot-toast** | Toast notifications |
 | **Price Data API** | `https://openapi.programming-hero.com/api/bazardor` (official PH API, with fallbacks) |
 
 ---
 
 ## 📄 Routes
 
-| Route | বিবরণ |
+| Route | Description |
 |---|---|
-| `/` | হোম — হিরো, টিকার, দাম বাড়া/কমা, সব পণ্য |
-| `/category/[slug]` | ক্যাটাগরি + সর্ট |
-| `/product/[slug]` | ডিটেইল (🔒 লগইন আবশ্যক) |
-| `/signin`, `/signup` | অথেনটিকেশন |
-| `/profile` | প্রোফাইল + নাম আপডেট (🔒) |
+| `/` | Home — hero, ticker, risers/fallers, all products |
+| `/category/[slug]` | Category browsing + sorting |
+| `/product/[slug]` | Details (🔒 sign-in required) |
+| `/signin`, `/signup` | Authentication |
+| `/profile` | Profile + name update (🔒) |
 
 ---
 
@@ -93,17 +93,17 @@ src/
 
 ```bash
 npm install
-cp .env.example .env.local   # নিজের env var-গুলো বসান
+cp .env.example .env.local   # fill in your own env vars
 npm run dev
 ```
 
-| Variable | আবশ্যক? | বিবরণ |
+| Variable | Required? | Description |
 |---|---|---|
-| `BETTER_AUTH_SECRET` | ✅ | র‍্যান্ডম সিক্রেট (`openssl rand -base64 32`) |
-| `BETTER_AUTH_URL` | ✅ | অ্যাপের URL (`http://localhost:3000`) |
+| `BETTER_AUTH_SECRET` | ✅ | Random secret (`openssl rand -base64 32`) |
+| `BETTER_AUTH_URL` | ✅ | App URL (`http://localhost:3000`) |
 | `MONGODB_URI` | ✅ | MongoDB Atlas connection string |
-| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | ⭕ | না দিলে শুধু ইমেইল/পাসওয়ার্ড চালু থাকে |
-| `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` | ⭕ | না দিলে শুধু ইমেইল/পাসওয়ার্ড চালু থাকে |
+| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | ⭕ | Optional — without these, only email/password login works |
+| `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` | ⭕ | Optional — without these, only email/password login works |
 
 ---
 
